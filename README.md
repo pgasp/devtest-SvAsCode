@@ -14,7 +14,8 @@ TODO
 
 ## Code Example
 
-	
+[source,java,indent=0]
+----	
 	@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
 
 	public class UserServiceTest {
@@ -42,7 +43,7 @@ TODO
 		assertEquals("Admin", user.getLname());
 
 	}
-	
+----	
 
 ## Installation
 
