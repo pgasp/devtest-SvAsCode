@@ -19,6 +19,9 @@ TODO
 package com.ca.devtest.lisabank.demo.sv.http;
 
 import static org.junit.Assert.assertEquals;
+package com.ca.devtest.lisabank.demo.sv.http;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.apache.commons.logging.Log;
@@ -45,28 +48,23 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
-@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 
 public class SimpleDemo {
-	static final Log logger=LogFactory.getLog(SimpleDemo.class);
+	static final Log logger = LogFactory.getLog(SimpleDemo.class);
 	@Autowired
 	private BankService bankServices;
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
-	
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-			port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
-			rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
-			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean", rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
 		User[] users = bankServices.getListUser();
 		assertNotNull(users);
 		assertEquals(9, users.length);
-
 	}
-	
-
 }
 
 ----	
