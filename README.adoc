@@ -45,8 +45,10 @@ public class SimpleDemo {
 
 
 ----	
-1/ Flag your class
-This below annotation flag you class as Junit using CA Virtual Services. This annotation will be used to refer CA DevTest Server
+This below annotation flag your Junit class as a Test using CA Virtual Services. This annotation set the configuration of CA DevTest Server. you can set up :
+- registryHost : registry hostname
+- deployServiceToVse : Name of VSE
+- 
 [source,java,indent=0]
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
