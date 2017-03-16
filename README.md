@@ -10,6 +10,7 @@ With this approach, using virtual services from your Continuous intergration pla
 - **lisabank-demo** : *Demo project using with junit test using annotation to deploy virtual services*
 
 ## Installation
+TODO
 
 ## Code Example
 
@@ -42,10 +43,6 @@ With this approach, using virtual services from your Continuous intergration pla
 
 	}
 	
-
-## Motivation
-These java annotations will use CA DevTest Rest API to build and deploy your virtual services from request/response pairs. 
-TODO
 
 ## Installation
 
