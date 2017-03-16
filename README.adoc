@@ -42,8 +42,10 @@ public class SimpleDemo {
 	}
 }
 
-=== Annotation usage
+
 ----	
+== Annotation usage
+
 [source,java,indent=0]
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
