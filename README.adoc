@@ -11,7 +11,7 @@ With this approach, using virtual services from your Continuous intergration pla
 
 
 == Installation and Getting Started
-Here is a quick sample of how to use **" sv as code "** in your Junit :
+Here is a quick sample of how to use **" sv as code "** in your Junit classes:
 [source,java,indent=0]
 ----	
 
@@ -44,18 +44,14 @@ public class SimpleDemo {
 
 
 ----	
-
-## Installation
-
-TODO
-
-
-## Contributors
+[source,java,indent=0]
+----	
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
+----
+-- Contributors
 
 - Pascal Gasp *Sr Architect Devops @ CA Technologies*
 - Vincent Mazot *Sr Consultant Devops @ CA Technologies*
 - Olivier Laplace  *Sr Presales Devops @ CA Technologies*
 
-## License
 
-TODO
