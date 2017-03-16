@@ -56,13 +56,21 @@ First, flag your Junit class as a Test using CA Virtual Services. This annotatio
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 ----
-Next, add VirtualServices rule as a member of Junit Instance. This rule will handle SV as Code annotations during the live cycle of Junit runner engine. Rules allow very flexible addition or redefinition of the behavior of each test method in a test class
+Add *VirtualServices* rule as a field member of Junit class. This rule will handle *SV as Code annotations* during Junit life cycle. Rules allow very flexible addition or redefinition of the behavior of each test method in a test class
 [source,java,indent=0]
 ----	
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 ----
 
+above each test method, add virtual service annotation. This annotation should refer Requests/Responses folder and define virtual service configuration such as service name, listnen port, path, type of protocole
+[source,java,indent=0]
+----	
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean",
+			port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
+			rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
+			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+----
 == Contributors
 
 - Pascal Gasp *Sr Architect Devops @ CA Technologies*
