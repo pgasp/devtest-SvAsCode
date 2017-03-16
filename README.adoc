@@ -45,8 +45,7 @@ public class SimpleDemo {
 
 
 ----	
-This below annotation flag your Junit class as a Test using CA Virtual Services. This annotation will be used to refer to the CA DevTest Server :
-
+First, flag your Junit class as a Test using CA Virtual Services. This annotation will be used to refer to the CA DevTest Server :
 * *registryHost* :* Registry hostname _(default value localhost)_
 * *deployServiceToVse :* Name of VSE
 * *login :* CA Devtest username _(default value svpower)_
@@ -56,7 +55,12 @@ This below annotation flag your Junit class as a Test using CA Virtual Services.
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 ----
- 
+Next, add VirtualServices rule as a member of Junit Instance. This rule will handle SV as Code annotations during the live cycle of Junit runner engine. Rules allow very flexible addition or redefinition of the behavior of each test method in a test class
+[source,java,indent=0]
+----	
+	@Rule
+	public VirtualServicesRule rules = new VirtualServicesRule();
+----
 
 == Contributors
 
