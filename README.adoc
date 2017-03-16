@@ -7,12 +7,12 @@ With this approach, using virtual services from your Continuous Integration plat
 == Projects description
 - **devtest-unit-test-java** : Source code of the java api wrapped on **CA Devtest Rest API** to build and deploy virtual services
 - **devtest-unit-test-java-annotation** : Source code of java annotations and Junit Rules used to parse our annotations
-- **lisabank-demo** : Demo project using with junit test using annotation to deploy virtual services
+- **lisabank-demo** : Demo project using SV as Code annotation to deploy virtual services in junit test
 
 == Installation
 
-== Code sample
-Here is a quick sample of how to use **" sv as code "** in your Junit classes:
+== Getting started
+Here is a quick sample of how to use **" SV as code "** in your Junit classes:
 [source,java,indent=0]
 ----	
 
@@ -45,8 +45,8 @@ public class SimpleDemo {
 
 
 ----	
-
-
+1/ Flag your class
+This below annotation flag you class as Junit using CA Virtual Services. This annotation will be used to refer CA DevTest Server
 [source,java,indent=0]
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
