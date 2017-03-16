@@ -12,7 +12,7 @@ With this approach, using virtual services from your Continuous intergration pla
 ## Code Example
 
 	
-	@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
+	**@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")**
 
 	public class UserServiceTest {
 		static final Log logger=LogFactory.getLog(UserServiceTest.class);
