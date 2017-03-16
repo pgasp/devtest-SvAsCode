@@ -9,8 +9,9 @@ With this approach, using virtual services from your Continuous Integration plat
 - **devtest-unit-test-java-annotation** : Source code of java annotations and Junit Rules used to parse our annotations
 - **lisabank-demo** : Demo project using with junit test using annotation to deploy virtual services
 
+== Installation
 
-== Installation and Getting Started
+== Code sample
 Here is a quick sample of how to use **" sv as code "** in your Junit classes:
 [source,java,indent=0]
 ----	
@@ -44,7 +45,7 @@ public class SimpleDemo {
 
 
 ----	
-== Annotation usage
+
 
 [source,java,indent=0]
 ----	
