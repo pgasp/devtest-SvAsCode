@@ -4,7 +4,10 @@ This project provides simple Java annotations that can be used  in your Junit Te
 This java annotation helps to embed your Virtual Services in your source code. This approach makes your application ready for continous integration testing by removing system and data constraints. Your tests become more reliable, repeatable and automated.
 With this approach, using virtual services from your Continuous intergration plateform becomes native. 
 
-
+## Projects description
+- devtest-unit-test-java : source code of the java api wrapped on CA Devtest Rest API to build and deploy virtual services
+- devtest-unit-test-java-annotation : source code of java annotations and Junit Rules used to parse our annotation
+- lisabank-demo : demo project using with junit test using annotation to deploy virtual services
 
 ## Code Example
 
