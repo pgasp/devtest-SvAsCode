@@ -48,6 +48,7 @@ public class SimpleDemo {
 ----	
 @DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 ----
+This Java annotation flag your application as 
 -- Contributors
 
 - Pascal Gasp *Sr Architect Devops @ CA Technologies*
