@@ -9,10 +9,12 @@ With this approach, using virtual services from your Continuous intergration pla
 - **devtest-unit-test-java-annotation** : *Source code of java annotations and Junit Rules used to parse our annotations*
 - **lisabank-demo** : *Demo project using with junit test using annotation to deploy virtual services*
 
+## Installation
+
 ## Code Example
 
 	
-	**@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")**
+	@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
 
 	public class UserServiceTest {
 		static final Log logger=LogFactory.getLog(UserServiceTest.class);
