@@ -63,7 +63,7 @@ Add *VirtualServices* rule as a field member of Junit class. This rule will hand
 	public VirtualServicesRule rules = new VirtualServicesRule();
 ----
 
-above each test method, add virtual service annotation. This annotation should refer Requests/Responses folder and define virtual service configuration such as service name, listnen port, path, type of protocole
+above of each test method, add virtual service annotation. This annotation should refer Requests/Responses folder and define virtual service configuration such as service name, listnen port, path, type of protocole
 [source,java,indent=0]
 ----	
 	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean",
