@@ -22,8 +22,8 @@ In your maven project **POM** file add a new repository to get the libraries dep
 ----
 
 
-Here is a quick sample of how to use **" SV as code "** in your Junit classes:
-[source,xml,indent=0]
+Here is a quick sample of how to use " SV as code " in your Junit classes:
+[source,java,indent=0]
 ----
 	<repositories>
 		...
