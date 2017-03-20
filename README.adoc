@@ -5,13 +5,18 @@ This java annotation helps to embed your Virtual Services in your source code. T
 With this approach, using virtual services from your Continuous Integration plateform becomes native. 
 
 == Projects description
-- **devtest-unit-test-java** : Source code of the java api wrapped on **CA Devtest Rest API** to build and deploy virtual services
-- **devtest-unit-test-java-annotation** : Source code of java annotations and Junit Rules used to parse our annotations
+- **devtest-unit-test-java** : Source code of java annotations,  Junit Rules used to parse our annotations and  java api wrapped on **CA Devtest Rest API** to build and deploy virtual services
 - **lisabank-demo** : Demo project using SV as Code annotation to deploy virtual services in junit test
 
-== Installation
+== Pre-requises 
+
+You should have **CA DevTest Server ** up and running. This server could be installed on your machine or on remote server. During implementation, you will setup registry URL and VSE Name through Java Annotation *@DevTestVirtualServer* . 
+This both parameters will be used to build and deploy your virtual services.
+This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)***. It's compatibe with CA DevTest 8.0 to 10.1. 
 
 == Getting started
+
+
 Here is a quick sample of how to use **" SV as code "** in your Junit classes:
 [source,java,indent=0]
 ----	
