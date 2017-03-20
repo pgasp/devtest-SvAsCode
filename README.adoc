@@ -17,12 +17,6 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 == Getting started
 
 In your maven project **POM** file add a new repository to get the libraries dependencies.
-
-[source,java,indent=0]
-----
-
-
-Here is a quick sample of how to use " SV as code " in your Junit classes:
 [source,java,indent=0]
 ----
 	<repositories>
@@ -33,6 +27,9 @@ Here is a quick sample of how to use " SV as code " in your Junit classes:
 			<url>https://github.com/pgasp/devtest-mvn-repo/raw/master/</url>
 		</repository>
 	</repositories>	
+----
+Here is a quick sample of how to use " SV as code " in your Junit classes:
+[source,java,indent=0]
 ----
 /**
  * @author pascal.gasp@ca.com
