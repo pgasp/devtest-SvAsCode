@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ca.devtest.sv.devtools</groupId>
 	<artifactId>devtest-unit-test-java</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>devtest-unit-test-java</name>
 
 	<description>API to use SV as API with Junit
@@ -13,7 +13,7 @@ This API will cover same scope as WirMock or MokServer</description>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
-	
+
 
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -50,8 +50,8 @@ This API will cover same scope as WirMock or MokServer</description>
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
 		</dependency>
-		
-	<dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -63,7 +63,24 @@ This API will cover same scope as WirMock or MokServer</description>
 			<scope>test</scope>
 		</dependency>
 
-	
-	</dependencies>
 
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
