@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.ca.devtest.lisabank.demo.sv.http;
 
 import static org.junit.Assert.assertEquals;
@@ -21,62 +24,29 @@ import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.ProtocolType;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
+/**
+ * @author pascal.gasp@ca.com
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 
-@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
-public class UserServiceTest {
-	static final Log logger=LogFactory.getLog(UserServiceTest.class);
+public class SimpleDemo {
+	static final Log logger = LogFactory.getLog(SimpleDemo.class);
 	@Autowired
 	private BankService bankServices;
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
-	
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
+
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean",
 			port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
 			rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
 			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
-		// Given
-
-		// When
 		User[] users = bankServices.getListUser();
-		// Then
-		printUsers(users);
 		assertNotNull(users);
 		assertEquals(9, users.length);
-		
-		User user=getUser("Admin", users);
-		assertNotNull(user);
-		
-		assertEquals("Admin", user.getLname());
-
-	}
-	
-
-	private void printUsers(User[] users) {
-	for (User user : users) {
-		logger.info(user.getFname() +" "+user.getLname() +" "+ user.getLogin());
-	}
-		
-	}
-
-
-	/**
-	 * @param name
-	 * @param users
-	 * @return
-	 */
-	private User getUser(String name,User[] users ){
-		
-		User result= null;
-		for (User user : users) {
-			if(name.equals(user.getLname())){
-				result=user;
-			}
-				
-		}
-		return result;
 	}
 }
