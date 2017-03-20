@@ -20,7 +20,13 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-
+	<repositories>
+		<repository>
+			<id>git-devtest</id>
+			<name>DevTest's Git based repo</name>
+			<url>https://github.com/pgasp/devtest-mvn-repo/raw/master/</url>
+		</repository>
+	</repositories>
 	<dependencies>
 
 		<dependency>
@@ -57,8 +63,8 @@
 
 		<dependency>
 			<groupId>com.ca.devtest.sv.devtools</groupId>
-			<artifactId>devtest-unit-test-java-annotation</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>devtest-unit-test-java</artifactId>
+			<version>1.0.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
