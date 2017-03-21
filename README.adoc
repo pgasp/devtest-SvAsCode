@@ -1,4 +1,4 @@
-== CA SV As Code
+== CA Service Virtualization As Code
 
 This project provides simple **Java annotations** that can be used  in your Junit Test to deploy Virtual Services before starting your test. The scope of annotations are test methods. +
 This java annotation helps to embed your Virtual Services in your source code. This approach makes your application ready for Continous Integration testing by removing system and data constraints with **CA Service Virtualization**. **Your tests become more reliable, repeatable and automated**. +
