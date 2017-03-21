@@ -27,6 +27,7 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 	</repository>
 </repositories>	
 ----
+
 - Add below dependency with scope test in your **pom file** : 
 [source,xml]
 ----
@@ -40,6 +41,7 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 ----
 
 - Below is a quick sample of how to use " SV as code " in your Junit classes:
+
 [source,java,indent=0]
 ----
 /**
