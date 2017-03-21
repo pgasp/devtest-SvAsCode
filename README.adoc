@@ -28,17 +28,7 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 </repositories>	
 ----
 
-- Add below dependency with scope test in your **pom file** : 
-[source,xml]
-----
-<dependency>
-	<groupId>com.ca.devtest.sv.devtools</groupId>
-	<artifactId>devtest-unit-test-java</artifactId>
-	<version>1.0.0</version>
-	<scope>test</scope>
-</dependency>
 
-----
 
 - Below is a quick sample of how to use " SV as code " in your Junit classes:
 
@@ -70,9 +60,8 @@ public class SimpleDemo {
 		assertEquals(9, users.length);
 	}
 }
-
-
 ----	
+
 First, flag your Junit class as a Test using CA Virtual Services. This annotation will be used to refer to the CA DevTest Server :
 
 * *registryHost* :* Registry hostname _(default value localhost)_
@@ -91,7 +80,7 @@ Add *VirtualServices* rule as a field member of Junit class. This rule will hand
 	public VirtualServicesRule rules = new VirtualServicesRule();
 ----
 
-above of each test method, add virtual service annotation. This annotation should refer Requests/Responses folder and define virtual service configuration such as service name, listnen port, path, type of protocole
+- Above of each test method, add virtual service annotation. This annotation should refer to the Requests/Responses folder and define virtual service configuration such as service name, listnen port, path, type of protocole
 [source,java,indent=0]
 ----	
 	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean",
