@@ -16,7 +16,7 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 
 == Getting started
 
-- In  the **pom file** of your maven project  add a new repository to get the libraries dependencies.
+In  the **pom file** of your maven project  add a new repository to get the libraries dependencies.
 [source,xml]
 ----
 <repositories>
@@ -28,7 +28,17 @@ This annotations will use ***CA DevTest Rest API (CA DevTest Invoke 2)*** and it
 </repositories>	
 ----
 
+- Add below dependency with scope test in your **pom file** : 
+[source,xml]
+----
+<dependency>
+	<groupId>com.ca.devtest.sv.devtools</groupId>
+	<artifactId>devtest-unit-test-java</artifactId>
+	<version>1.0.0</version>
+	<scope>test</scope>
+</dependency>
 
+----
 
 - Below is a quick sample of how to use " SV as code " in your Junit classes:
 
