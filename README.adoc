@@ -23,7 +23,7 @@ In  the **pom file** of your maven project  add a new repository to get the libr
 	<repository>
 		<id>git-devtest</id>
 		<name> CA SV as Code's Git based repo </name>
-		<url> https://github.com/pgasp/devtest-mvn-repo/raw/master/ </url>
+		<url>https://github.com/pgasp/devtest-mvn-repo/raw/master/</url>
 	</repository>
 </repositories>	
 ----
