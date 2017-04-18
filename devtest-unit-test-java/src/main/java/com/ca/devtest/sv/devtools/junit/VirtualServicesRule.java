@@ -22,9 +22,10 @@ import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.annotation.Protocol;
+import com.ca.devtest.sv.devtools.annotation.processor.DevTestAnnotationProcessor;
 import com.ca.devtest.sv.devtools.protocol.builder.DataProtocolBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.ProtocolBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilder;
+import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
+import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
 
@@ -143,15 +144,14 @@ public class VirtualServicesRule implements TestRule {
 		try {
 			 LOGGER.debug("Process annotation for method "+description.getMethodName());
 			Class<?> testClazz = description.getTestClass();
-			DevTestClient devTestClient = buildDevtestClient(testClazz);
+			DevTestAnnotationProcessor devtestProcessor=new DevTestAnnotationProcessor(testClazz);
 
 			Method method = testClazz.getMethod(description.getMethodName(), new Class[] {});
 
-			DevTestVirtualService[] annotations = method.getAnnotationsByType(DevTestVirtualService.class);
-			for (DevTestVirtualService virtualService : annotations) {
-				 LOGGER.debug("Process virtual service "+virtualService.serviceName());
-				virtualServices.add(buildVirtualService(devTestClient, virtualService));
-			}
+			
+			virtualServices.addAll(devtestProcessor.process(method));
+			
+			
 			
 		} catch (Exception error) {
 
@@ -163,59 +163,5 @@ public class VirtualServicesRule implements TestRule {
 
 	}
 
-	private VirtualService buildVirtualService(DevTestClient devTestClient, DevTestVirtualService virtualService)
-			throws IOException, URISyntaxException {
-
-		URL url = getClass().getClassLoader().getResource(virtualService.rrpairsFolder());
-		File rrPairsFolder = new File(url.toURI());
-		VirtualServiceBuilder<?> virtualServiceBuilder = devTestClient
-				.fromRRPairs(virtualService.serviceName(), rrPairsFolder);
-		if(-1!=virtualService.port()){
-			virtualServiceBuilder.overHttp(virtualService.port(), virtualService.basePath());
-		}else{
-			// build Transport Protocol
-			 TransportProtocolBuilder transportBuilder = new TransportProtocolBuilder(virtualService.transport().value());
-			 Parameter[] transportParam = virtualService.transport().parameters();
-			 addParamesToBuilder(transportBuilder, transportParam);
-
-			// add Transport Protocol
-			 virtualServiceBuilder.over(transportBuilder.build());
-		}
-
 	
-
-		// build List of RequestDataProtocol
-		Protocol[] requestDataProtocol = virtualService.requestDataProtocol();
-		DataProtocolBuilder requestDataProtocolBuilder = null;
-		// add request Data Protocol
-		for (Protocol protocol : requestDataProtocol) {
-			requestDataProtocolBuilder = new DataProtocolBuilder(protocol.value());
-			addParamesToBuilder(requestDataProtocolBuilder, protocol.parameters());
-			virtualServiceBuilder.addRequestDataProtocol(requestDataProtocolBuilder.build());
-		}
-
-		// build List of RespondDataProtocol
-		Protocol[] responseDataProtocol = virtualService.responseDataProtocol();
-		DataProtocolBuilder responseDataProtocolBuilder = null;
-		// add respond Data Protocol
-		for (Protocol protocol : responseDataProtocol) {
-			responseDataProtocolBuilder = new DataProtocolBuilder(protocol.value());
-			addParamesToBuilder(responseDataProtocolBuilder, protocol.parameters());
-			virtualServiceBuilder.addRespondDataProtocol(responseDataProtocolBuilder.build());
-		}
-
-		return virtualServiceBuilder.build();
-	}
-
-	/**
-	 * @param builder
-	 * @param parameters
-	 */
-	private void addParamesToBuilder(ProtocolBuilder builder, Parameter[] parameters) {
-
-		for (Parameter parameter : parameters) {
-			builder.addKeyValue(parameter.name(), parameter.value());
-		}
-
-	}
 }

@@ -54,4 +54,28 @@ public class SoapClient {
 		}
 		return result.toString();
 	}
+	
+	public String callJSONService(String path,String request) throws  IOException {
+		HttpClient client = HttpClients.createDefault();
+		HttpPost post = new HttpPost(String.format(END_POINT, server, port,path));
+		HttpEntity content= new StringEntity(request,ContentType.APPLICATION_JSON);
+		post.setEntity(content);
+		HttpResponse response = client.execute(post);
+
+		
+		if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+			throw new HttpResponseException(response.getStatusLine().getStatusCode(),
+					"Service responding with error ");
+		}
+		
+		BufferedReader rd = new BufferedReader(
+			new InputStreamReader(response.getEntity().getContent()));
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		while ((line = rd.readLine()) != null) {
+			result.append(line);
+		}
+		return result.toString();
+	}
 }

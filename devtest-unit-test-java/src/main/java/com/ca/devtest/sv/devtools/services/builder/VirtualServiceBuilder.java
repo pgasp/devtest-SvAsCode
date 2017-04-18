@@ -11,9 +11,8 @@ import java.util.Map;
 import com.ca.devtest.sv.devtools.VirtualServiceEnvironment;
 import com.ca.devtest.sv.devtools.protocol.DataProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
-import com.ca.devtest.sv.devtools.protocol.builder.DataProtocolBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.ProtocolBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilder;
+import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinitionImpl;
+import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.type.TransportProtocolType;
 import com.ca.devtest.sv.devtools.utils.VelocityRender;
@@ -26,9 +25,9 @@ public  abstract class VirtualServiceBuilder<T>{
 	
 
 
-	private VirtualServiceEnvironment vse;
-	private String serviceName;
-	private TransportProtocolDefinition transportProtocol;
+	private  VirtualServiceEnvironment vse;
+	private  String serviceName;
+	private  TransportProtocolDefinition transportProtocol;
 	private final String DEFAULT_SERVICE_PROPERTIES_TPL="<?xml version=\"1.0\" ?><recording><name>$vitrualService.serviceName</name><binary>false</binary><group>$vitrualService.group</group></recording>";
 	
 	
@@ -36,7 +35,7 @@ public  abstract class VirtualServiceBuilder<T>{
 		super(); 
 		this.serviceName=name;
 		this.vse=vse;
-		transportProtocol=new TransportProtocolBuilder(TransportProtocolType.HTTP.getType()).addParameter("listenPort", "8080").addParameter("basePath", "/").build();
+		transportProtocol=new TransportProtocolBuilderImpl(TransportProtocolType.HTTP.getType()).addParameter("listenPort", "8080").addParameter("basePath", "/").build();
 	}
 	
 	/**
@@ -44,7 +43,8 @@ public  abstract class VirtualServiceBuilder<T>{
 	 * @return
 	 */
 	public VirtualServiceBuilder overHttp(int port , String basePath) {
-		this.transportProtocol=new TransportProtocolBuilder(TransportProtocolType.HTTP.getType()).addParameter("listenPort", String.valueOf(port)).addParameter("basePath", basePath).build();
+		
+		this.transportProtocol=new TransportProtocolBuilderImpl(TransportProtocolType.HTTP.getType()).addParameter("listenPort", String.valueOf(port)).addParameter("basePath", basePath).build();
 		return this;
 	}
 	
@@ -52,7 +52,8 @@ public  abstract class VirtualServiceBuilder<T>{
 	 * @param transportProtocol
 	 * @return
 	 */
-	public <T>  VirtualServiceBuilder over(TransportProtocolDefinition transportProtocol) {
+	public VirtualServiceBuilder over(TransportProtocolDefinition transportProtocol) {
+		
 		this.transportProtocol=transportProtocol;
 		return this;
 	}
@@ -126,7 +127,7 @@ public  abstract class VirtualServiceBuilder<T>{
 	 * @param dataProtocol
 	 * @return
 	 */
-	public  <T>  VirtualServiceBuilder addRequestDataProtocol(DataProtocolDefinition dataProtocol) {
+	public  VirtualServiceBuilder addRequestDataProtocol(DataProtocolDefinition dataProtocol) {
 		
 		 transportProtocol.getRequestSide().add(dataProtocol);
 		 return this;
@@ -136,7 +137,7 @@ public  abstract class VirtualServiceBuilder<T>{
 	 * @param dataProtocol
 	 * @return
 	 */
-	public  <T>  VirtualServiceBuilder addRespondDataProtocol(DataProtocolDefinition dataProtocol) {
+	public VirtualServiceBuilder addRespondDataProtocol(DataProtocolDefinition dataProtocol) {
 		
 		 transportProtocol.getResponseSide().add(dataProtocol);
 		 return this;

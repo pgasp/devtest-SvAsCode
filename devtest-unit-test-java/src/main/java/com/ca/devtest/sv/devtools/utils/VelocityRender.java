@@ -24,7 +24,7 @@ public class VelocityRender {
 	 * @param config
 	 * @return
 	 */
-	public static String render(String content, Map<String, Object> config) {
+	public static String render(String content, Map config) {
 		// Initialize the engine.
 		VelocityEngine engine = new VelocityEngine();
 

@@ -16,7 +16,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface DevTestVirtualServices {
 	
-	DevTestVirtualService[] value() ;
+	DevTestVirtualService[] value() default{ } ;
+	
 	
 	
 }

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
+import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinitionImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceRRPairsBuilder;
@@ -23,7 +23,7 @@ public class DevTestClient {
 	private Map<String, VirtualService> virtualServices;
 	private String serviceName;
 	private File rrPairsFolder;
-	private TransportProtocolDefinition transportProtocol;
+	private TransportProtocolDefinitionImpl transportProtocol;
 	
 	private VirtualServiceBuilder virtualServiceBuilder= null;
 	

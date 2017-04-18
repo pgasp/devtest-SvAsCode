@@ -38,7 +38,7 @@ This API will cover same scope as WirMock or MokServer</description>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>4.5.2</version>
+			<version>4.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>

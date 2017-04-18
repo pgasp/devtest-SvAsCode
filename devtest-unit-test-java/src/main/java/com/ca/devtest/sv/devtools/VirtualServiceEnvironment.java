@@ -3,6 +3,7 @@ package com.ca.devtest.sv.devtools;
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -14,6 +15,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import com.ca.devtest.sv.devtools.services.VirtualService;
 
@@ -75,7 +77,11 @@ public class VirtualServiceEnvironment {
 
 	
 			HttpResponse response = httpClient.execute(post);
+			
 			if (response.getStatusLine().getStatusCode() != HttpStatus.SC_CREATED) {
+				HttpEntity entity = response.getEntity();
+				String responseString = EntityUtils.toString(entity, "UTF-8");
+				System.out.println(responseString);
 				throw new HttpResponseException(response.getStatusLine().getStatusCode(),
 						"VS creation did not complete normally");
 			}
