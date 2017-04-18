@@ -11,7 +11,6 @@ import java.util.Map;
 import com.ca.devtest.sv.devtools.protocol.DataProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinitionImpl;
-import com.ca.devtest.sv.devtools.type.DataProtocolType;
 
 /**
  * @author gaspa03

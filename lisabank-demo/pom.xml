@@ -65,7 +65,22 @@
 			<groupId>com.ca.devtest.sv.devtools</groupId>
 			<artifactId>devtest-unit-test-java</artifactId>
 			<version>1.0.0</version>
-			<scope>test</scope>
+
+		</dependency>
+			<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.5.3</version>
 		</dependency>
 	</dependencies>
 
@@ -77,33 +92,7 @@
 			</plugin>
 			<!-- Generate Java-Classes inkl. JAXB-Bindings from WSDL & imported XSD 
 				See Doku at http://www.mojohaus.org/jaxws-maven-plugin/usage.html -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxws-maven-plugin</artifactId>
-				<version>2.4.1</version>
-				<configuration>
-					<packageName>com.ca.devtest.lisabank.wsdl</packageName>
-					<!-- See http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html -->
-					<wsdlUrls>
-						<wsdlUrl>http://localhost:9080/itkoExamples/EJB3UserControlBean?wsdl</wsdlUrl>
-						<wsdlUrl>http://localhost:9080/itkoExamples/EJB3AccountControlBean?wsdl</wsdlUrl>
-						<wsdlUrl>http://localhost:9080/itkoExamples/TokenBean?wsdl</wsdlUrl>
 
-					</wsdlUrls>
-					<sourceDestDir>src/main/generated-sources/wsdlimport</sourceDestDir>
-					<!-- For accessing the imported schema, see https://netbeans.org/bugzilla/show_bug.cgi?id=241570 -->
-					<vmArgs>
-						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-					</vmArgs>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>wsimport</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>

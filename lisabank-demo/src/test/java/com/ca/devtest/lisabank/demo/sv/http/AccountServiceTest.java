@@ -37,13 +37,13 @@ public class AccountServiceTest {
 	public VirtualServicesRule rules = new VirtualServicesRule();
 
 	
-
 	@DevTestVirtualService(serviceName = "EJB3AccountControlBean", port = 9080, basePath = "/itkoExamples/EJB3AccountControlBean", 
-	rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
-	@DevTestVirtualService(serviceName = "EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
-	rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
-	@DevTestVirtualService(serviceName = "TokenBean", port = 9080, basePath = "/itkoExamples/TokenBean",
-	rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/TokenBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+			@DevTestVirtualService(serviceName = "EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
+			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+			@DevTestVirtualService(serviceName = "TokenBean", port = 9080, basePath = "/itkoExamples/TokenBean",
+			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/TokenBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+	
 	@Test
 	public void createUserWithCheckingAccount() {
 

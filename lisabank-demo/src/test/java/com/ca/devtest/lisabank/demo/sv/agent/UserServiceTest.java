@@ -24,9 +24,9 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 import net.bytebuddy.agent.ByteBuddyAgent;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
-@DevTestVirtualServer(deployServiceToVse = "VSE")
+@DevTestVirtualServer(deployServiceToVse = "VSE")*/
 public class UserServiceTest {
 	static final Log logger=LogFactory.getLog(UserServiceTest.class);
 	@Autowired
@@ -50,7 +50,7 @@ public class UserServiceTest {
 	    }
 	}
 	
-	@Test
+	//@Test
 	public void getListUser() {
 		
 		loadAgent();

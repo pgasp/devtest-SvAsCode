@@ -32,6 +32,7 @@ public class UserServiceTest {
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 	
+
 	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
 			port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
 			rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 

@@ -3,11 +3,8 @@
  */
 package com.ca.devtest.sv.devtools.junit;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +16,8 @@ import org.junit.runners.model.Statement;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
-import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
-import com.ca.devtest.sv.devtools.annotation.Parameter;
-import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.processor.DevTestAnnotationProcessor;
-import com.ca.devtest.sv.devtools.protocol.builder.DataProtocolBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
-import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
-import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
 
 /**
  * @author gaspa03

@@ -9,13 +9,13 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.ca.devtest.sv.devtools.annotation.Config;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.ProtocolType;
-import com.ca.devtest.sv.devtools.annotation.Config;
 import com.ca.devtest.sv.devtools.application.SoapClient;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 

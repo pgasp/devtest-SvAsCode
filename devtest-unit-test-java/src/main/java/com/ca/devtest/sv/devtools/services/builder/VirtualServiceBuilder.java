@@ -11,7 +11,6 @@ import java.util.Map;
 import com.ca.devtest.sv.devtools.VirtualServiceEnvironment;
 import com.ca.devtest.sv.devtools.protocol.DataProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
-import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinitionImpl;
 import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.type.TransportProtocolType;
