@@ -1,0 +1,2 @@
+How to deploy new version : 
+mvn install:install-file -DgroupId=com.ca.devtest.sv.devtools -DartifactId=devtest-unit-test-java -Dversion=1.1.2 -Dpackaging=jar -Dfile=/Users/gaspa03/git/svascode/devtest-unit-test-java/target/devtest-unit-test-java-1.1.2.jar -DlocalRepositoryPath=/Users/gaspa03/git/devtest-mvn-repo

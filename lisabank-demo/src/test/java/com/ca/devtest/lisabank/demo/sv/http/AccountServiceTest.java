@@ -28,22 +28,19 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
-@DevTestVirtualServer(deployServiceToVse = "VSE")
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 public class AccountServiceTest {
 	@Autowired
 	private BankService bankServices;
-	
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 
-	
-	@DevTestVirtualService(serviceName = "EJB3AccountControlBean", port = 9080, basePath = "/itkoExamples/EJB3AccountControlBean", 
-			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
-			@DevTestVirtualService(serviceName = "EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
-			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
-			@DevTestVirtualService(serviceName = "TokenBean", port = 9080, basePath = "/itkoExamples/TokenBean",
-			rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/TokenBean", requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
-	
+	@DevTestVirtualService(serviceName = "EJB3AccountControlBean", port = 9080, basePath = "/itkoExamples/EJB3AccountControlBean", rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
+	@DevTestVirtualService(serviceName = "EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean", rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
+	@DevTestVirtualService(serviceName = "TokenBean", port = 9080, basePath = "/itkoExamples/TokenBean", rrpairsFolder = "AccountServiceTest/createUserWithCheckingAccount/TokenBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void createUserWithCheckingAccount() {
 
@@ -52,11 +49,11 @@ public class AccountServiceTest {
 		String password = "password";
 		int amount = 1000;
 		// prepare context
-		//bankServices.deleteUser(user);
+		// bankServices.deleteUser(user);
 		// When
 		Account account = bankServices.createUserWithCheckingAccount(user, password, amount);
 		// Then
 		assertNotNull(account);
-		assertEquals("Le balance du compte n'est pas conforme",amount, account.getBalance().intValue());
+		assertEquals("Le balance du compte n'est pas conforme", amount, account.getBalance().intValue());
 	}
 }

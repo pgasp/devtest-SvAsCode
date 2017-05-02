@@ -64,7 +64,7 @@
 		<dependency>
 			<groupId>com.ca.devtest.sv.devtools</groupId>
 			<artifactId>devtest-unit-test-java</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.5</version>
 
 		</dependency>
 			<dependency>
@@ -90,27 +90,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- Generate Java-Classes inkl. JAXB-Bindings from WSDL & imported XSD 
-				See Doku at http://www.mojohaus.org/jaxws-maven-plugin/usage.html -->
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/main/generated-sources/wsdlimport</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+		
 		</plugins>
 	</build>
 

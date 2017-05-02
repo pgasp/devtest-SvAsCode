@@ -1,6 +1,7 @@
 package com.ca.devtest.sv.devtools.annotation.processor;
 
 import java.lang.annotation.Annotation;
+import java.util.List;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
 import com.ca.devtest.sv.devtools.exception.VirtualServiceProcessorException;
@@ -15,6 +16,6 @@ public interface MethodProcessorAnnotation {
 	/**
 	 * @return
 	 */
-	VirtualService process(DevTestClient devTestClient, Annotation annotation) throws VirtualServiceProcessorException;
+	List<VirtualService> process(DevTestClient devTestClient, Annotation annotation) throws VirtualServiceProcessorException;
 
 }

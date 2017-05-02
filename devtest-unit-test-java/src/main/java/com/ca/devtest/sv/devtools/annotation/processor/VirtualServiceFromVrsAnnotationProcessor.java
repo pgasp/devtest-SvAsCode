@@ -6,8 +6,11 @@ package com.ca.devtest.sv.devtools.annotation.processor;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
+import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.exception.VirtualServiceProcessorException;
@@ -26,9 +29,12 @@ public class VirtualServiceFromVrsAnnotationProcessor implements MethodProcessor
 	 * @see com.ca.devtest.sv.devtools.annotation.processor.MethodProcessorAnnotation#process(com.ca.devtest.sv.devtools.DevTestClient, java.lang.annotation.Annotation)
 	 */
 	@Override
-	public VirtualService process(DevTestClient devTestClient, Annotation annotation)
+	public List<VirtualService> process(DevTestClient devTestClient, Annotation annotation)
 			throws VirtualServiceProcessorException {
-		return buildVirtualService(devTestClient,(DevTestVirtualServiceFromVrs)annotation);
+		 List<VirtualService>  result=new ArrayList<VirtualService>(1);
+		 result.add( buildVirtualService(devTestClient,(DevTestVirtualServiceFromVrs)annotation));
+		return result;
+
 	}
 	
 	/**

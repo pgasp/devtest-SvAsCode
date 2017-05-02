@@ -6,6 +6,8 @@ package com.ca.devtest.sv.devtools.annotation.processor;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
@@ -31,15 +33,18 @@ public class VirtualServiceAnnotationProcessor implements MethodProcessorAnnotat
 	 * com.ca.devtest.sv.devtools.processor.MethodProcessorAnnotation#process()
 	 */
 	@Override
-	public VirtualService process(DevTestClient devTestClient, Annotation annotation) throws VirtualServiceProcessorException{
-
-		return buildVirtualService(devTestClient, (DevTestVirtualService) annotation);
+	public List<VirtualService> process(DevTestClient devTestClient, Annotation annotation) throws VirtualServiceProcessorException{
+		 List<VirtualService>  result=new ArrayList<VirtualService>(1);
+		 result.add(buildVirtualService(devTestClient, (DevTestVirtualService) annotation));
+		return result;
 	}
 
 	private VirtualService buildVirtualService(DevTestClient devTestClient, DevTestVirtualService virtualService)
 			throws VirtualServiceProcessorException {
+		
+		
 		try {
-			URL url = getClass().getClassLoader().getResource(virtualService.rrpairsFolder());
+			URL url = getClass().getClassLoader().getResource(virtualService.workingFolder());
 			File rrPairsFolder = new File(url.toURI());
 			VirtualServiceBuilder<?> virtualServiceBuilder = devTestClient.fromRRPairs(virtualService.serviceName(),
 					rrPairsFolder);
@@ -76,7 +81,7 @@ public class VirtualServiceAnnotationProcessor implements MethodProcessorAnnotat
 				virtualServiceBuilder.addRespondDataProtocol(responseDataProtocolBuilder.build());
 			}
 
-			return virtualServiceBuilder.build();
+			return  virtualServiceBuilder.build();
 		} catch (Exception error) {
 			throw new VirtualServiceProcessorException("Error during ", error);
 		}

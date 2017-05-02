@@ -4,6 +4,8 @@
 package com.ca.devtest.sv.devtools.annotation.processor;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
 import com.ca.devtest.sv.devtools.exception.VirtualServiceProcessorException;
@@ -22,9 +24,9 @@ public class NopMethodProcessor implements MethodProcessorAnnotation {
 	 * @see com.ca.devtest.sv.devtools.processor.MethodProcessorAnnotation#process()
 	 */
 	@Override
-	public VirtualService process(DevTestClient devTestClient, Annotation annotation)throws VirtualServiceProcessorException {
+	public List<VirtualService> process(DevTestClient devTestClient, Annotation annotation)throws VirtualServiceProcessorException {
 		
-		return null;
+		return new ArrayList<VirtualService>();
 	}
 
 }

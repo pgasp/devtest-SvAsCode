@@ -53,9 +53,9 @@ public class DevTestAnnotationProcessor {
 		for (Annotation annotation : annotations) {
 			// get Annotation processor 
 			MethodProcessorAnnotation processor = AnnotationProcessorFactory.getMetodProcessor(annotation);
-			VirtualService service=processor.process(devtestClient,annotation);
-			if( null!=service)
-			virtualServices.add(service);
+			List<VirtualService> services=processor.process(devtestClient,annotation);
+			if( null!=services)
+			virtualServices.addAll(services);
 		}
 
 		return virtualServices;

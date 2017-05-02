@@ -24,8 +24,8 @@ public @interface DevTestVirtualService {
 	Protocol[] requestDataProtocol() default{ } ;
 	Protocol[] responseDataProtocol()default{ } ;
 	Class preDeployClass() default Object.class;
-	String rrpairsFolder();
-	
+	String workingFolder();
+	Parameter[] parameters() default{};
 }
 
 

@@ -33,7 +33,7 @@ public class DevTesClientRRPairs {
 	 * @throws URISyntaxException
 	 */
 
-	@DevTestVirtualService(serviceName = "lisa", port = 9001, basePath = "/lisa", rrpairsFolder = "rrpairs/soap", requestDataProtocol = {
+	@DevTestVirtualService(serviceName = "lisa", port = 9001, basePath = "/lisa", workingFolder = "rrpairs/soap", requestDataProtocol = {
 			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void createSoapService() throws IOException, URISyntaxException {
