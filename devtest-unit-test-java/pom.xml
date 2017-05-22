@@ -15,7 +15,7 @@ This API will cover same scope as WirMock or MokServer</description>
 	<distributionManagement>
         <repository>
             <id>local</id>
-            <url>file:///Users/gaspa03/git</url>
+            <url>file:///Users/gaspa03/git/devtest-mvn-repo</url>
         </repository>
     </distributionManagement>
 	<dependencies>
