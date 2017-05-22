@@ -24,19 +24,16 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
 
-@DevTestVirtualServer(registryHost="localhost" , deployServiceToVse = "VSE")
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 public class UserServiceTest {
-	static final Log logger=LogFactory.getLog(UserServiceTest.class);
+	static final Log logger = LogFactory.getLog(UserServiceTest.class);
 	@Autowired
 	private BankService bankServices;
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
-	
 
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-			port = 9080, basePath = "/itkoExamples/EJB3UserControlBean",
-			rrpairsFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
-			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean", workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
 		// Given
@@ -47,36 +44,34 @@ public class UserServiceTest {
 		printUsers(users);
 		assertNotNull(users);
 		assertEquals(9, users.length);
-		
-		User user=getUser("Admin", users);
+
+		User user = getUser("Admin", users);
 		assertNotNull(user);
-		
+
 		assertEquals("Admin", user.getLname());
 
 	}
-	
 
 	private void printUsers(User[] users) {
-	for (User user : users) {
-		logger.info(user.getFname() +" "+user.getLname() +" "+ user.getLogin());
-	}
-		
-	}
+		for (User user : users) {
+			logger.info(user.getFname() + " " + user.getLname() + " " + user.getLogin());
+		}
 
+	}
 
 	/**
 	 * @param name
 	 * @param users
 	 * @return
 	 */
-	private User getUser(String name,User[] users ){
-		
-		User result= null;
+	private User getUser(String name, User[] users) {
+
+		User result = null;
 		for (User user : users) {
-			if(name.equals(user.getLname())){
-				result=user;
+			if (name.equals(user.getLname())) {
+				result = user;
 			}
-				
+
 		}
 		return result;
 	}

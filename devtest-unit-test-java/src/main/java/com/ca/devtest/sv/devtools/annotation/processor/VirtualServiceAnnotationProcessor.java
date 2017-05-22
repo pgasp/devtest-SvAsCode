@@ -19,6 +19,7 @@ import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
 import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
+import com.ca.devtest.sv.devtools.utils.Utility;
 
 /**
  * @author gaspa03
@@ -80,6 +81,8 @@ public class VirtualServiceAnnotationProcessor implements MethodProcessorAnnotat
 				addParamsToBuilder(responseDataProtocolBuilder, protocol.parameters());
 				virtualServiceBuilder.addRespondDataProtocol(responseDataProtocolBuilder.build());
 			}
+			// handle Parameters 
+			Utility.addParamsToBuilder(virtualServiceBuilder, virtualService.parameters());
 
 			return  virtualServiceBuilder.build();
 		} catch (Exception error) {

@@ -10,14 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ca.devtest.sv.devtools.DevTestClient;
-import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.exception.VirtualServiceProcessorException;
-import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
 import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolFromVrsBuilder;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
+import com.ca.devtest.sv.devtools.utils.Utility;
 
 /**
  * @author gaspa03
@@ -54,7 +53,7 @@ public class VirtualServiceFromVrsAnnotationProcessor implements MethodProcessor
 			// build Transport Protocol
 			TransportProtocolFromVrsBuilder transportBuilder = new TransportProtocolFromVrsBuilder(vrsFile);
 				Parameter[] transportParam = virtualService.vrsConfig().parameters();
-				addParamsToBuilder(transportBuilder, transportParam);
+				Utility.addParamsToBuilder(transportBuilder, transportParam);
 				// add Transport Protocol
 				virtualServiceBuilder.over(transportBuilder.build());
 
@@ -64,15 +63,5 @@ public class VirtualServiceFromVrsAnnotationProcessor implements MethodProcessor
 		}
 
 	}
-	/**
-	 * @param builder
-	 * @param parameters
-	 */
-	private void addParamsToBuilder(ParamatrizedBuilder builder, Parameter[] parameters) {
-
-		for (Parameter parameter : parameters) {
-			builder.addKeyValue(parameter.name(), parameter.value());
-		}
-
-	}
+	
 }

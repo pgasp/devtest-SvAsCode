@@ -40,6 +40,6 @@ public final class VirtualServiceRRPairsBuilder extends VirtualServiceBuilder {
 	
 	protected File packVirtualService() throws IOException {
 	
-		return PackVirtualService.packVirtualService(getRrPairsFolder(), generateVrsContent(),generateServicePropertiesContent());
+		return PackVirtualService.packVirtualService(getRrPairsFolder(), getParameters(),generateVrsContent(),generateServicePropertiesContent());
 	}
 }

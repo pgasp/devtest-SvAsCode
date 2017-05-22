@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -29,17 +31,17 @@ public class PackVirtualService {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("resource")
-	public static File packVirtualService(File rrpairsFolder, String vrsContent, String servicePropertiesContent)
+	public static File packVirtualService(File rrpairsFolder,  Map config,String vrsContent, String servicePropertiesContent)
 			throws IOException {
 
 		String tmpDir = System.getProperty("java.io.tmpdir");
-		// A optimiser pour creation de fichier temp
+		
 		
 		File virtualServiceArchive = File.createTempFile("virtualServiceArchive", ".zip");//new File(new StrBuilder(tmpDir).append("/virtualServiceArchive.zip").toString());
 		ZipOutputStream out = null;
 		try {
 			out = new ZipOutputStream(new FileOutputStream(virtualServiceArchive));
-			FilenameFilter filter = new WildcardFileFilter(new String[]{"*-req.*","*-rsp.*","mapping.xml","*.cbl"});
+			FilenameFilter filter = new WildcardFileFilter(new String[]{"*-req.*","*-rsp.*"});
 			File[] lstFile = rrpairsFolder.listFiles(filter);
 			ZipEntry entry = null;
 
@@ -47,6 +49,7 @@ public class PackVirtualService {
 				entry = new ZipEntry(file.getName());
 				out.putNextEntry(entry);
 				byte[] data = IOUtils.toByteArray(new FileInputStream(file));
+				data=VelocityRender.render(IOUtils.toString(data,Charset.defaultCharset().name()), config).getBytes();
 				out.write(data, 0, data.length);
 				out.closeEntry();
 
@@ -78,6 +81,11 @@ public class PackVirtualService {
 				out.close();
 		}
 		return virtualServiceArchive;
+	}
+
+	private static void copieRRPairs(File rrpairsFolder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

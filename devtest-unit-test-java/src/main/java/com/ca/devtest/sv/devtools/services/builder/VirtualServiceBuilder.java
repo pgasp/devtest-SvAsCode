@@ -11,6 +11,7 @@ import java.util.Map;
 import com.ca.devtest.sv.devtools.VirtualServiceEnvironment;
 import com.ca.devtest.sv.devtools.protocol.DataProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
+import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
 import com.ca.devtest.sv.devtools.protocol.builder.TransportProtocolBuilderImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.type.TransportProtocolType;
@@ -20,7 +21,7 @@ import com.ca.devtest.sv.devtools.utils.VelocityRender;
  * @author gaspa03
  *
  */
-public  abstract class VirtualServiceBuilder<T>{
+public  abstract class VirtualServiceBuilder<T>   implements ParamatrizedBuilder{
 	
 
 
@@ -28,7 +29,7 @@ public  abstract class VirtualServiceBuilder<T>{
 	private  String serviceName;
 	private  TransportProtocolDefinition transportProtocol;
 	private final String DEFAULT_SERVICE_PROPERTIES_TPL="<?xml version=\"1.0\" ?><recording><name>$vitrualService.serviceName</name><binary>false</binary><group>$vitrualService.group</group></recording>";
-	
+	private final Map<String, String> parameters= new HashMap<String, String>();
 	
 	public VirtualServiceBuilder(String name, VirtualServiceEnvironment vse){
 		super(); 
@@ -141,6 +142,15 @@ public  abstract class VirtualServiceBuilder<T>{
 		 transportProtocol.getResponseSide().add(dataProtocol);
 		 return this;
 	}
+
+	protected Map<String, String> getParameters() {
+		return parameters;
+	}
 	
 
+	@Override
+	public void addKeyValue(String key, String value) {
+		parameters.put(key, value);
+		
+	}
 }
