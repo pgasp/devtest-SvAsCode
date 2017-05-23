@@ -67,7 +67,7 @@ public class VirtualServiceEnvironment {
 		System.out.println("");
 		HttpPost post = new HttpPost(urlPost);
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-		FileBody contentBody = new FileBody(service.getPackedVirtualService(), ContentType.APPLICATION_JSON);
+		FileBody contentBody = new FileBody(service.getPackedVirtualService(), ContentType.APPLICATION_JSON.getMimeType());
 		builder.addPart("file", contentBody);
 		post.setEntity(builder.build());
 		Base64 b64 = new Base64();

@@ -21,6 +21,7 @@ import com.ca.devtest.lisabank.wsdl.Account;
 import com.ca.devtest.lisabank.wsdl.User;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
+import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.ProtocolType;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
@@ -48,6 +49,25 @@ public class SimpleDemo {
 		assertEquals(9, users.length);
 	}
 
+	@DevTestVirtualService(serviceName = "SimpleDemo.getListUser",
+			port = 9080, 
+			workingFolder = "UserServiceTest/getListUser/template",
+			basePath = "/itkoExamples/EJB3UserControlBean",
+			parameters={
+					@Parameter(name = "email", value = "toto.gasp@gmail.com"), 
+					@Parameter(name = "login", value = "toto"),
+					@Parameter(name = "pwd", value = "toto"),
+					@Parameter(name = "nom", value = "toto GASP")},
+			requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
+	@Test
+	public void getListUserTemplate() {
+		User[] users = bankServices.getListUser();
+		printUsers(users);
+		assertNotNull(users);
+		assertEquals(1, users.length);
+	}
+
 	@DevTestVirtualService(serviceName = "SimpleDemo.getListUser", port = 9080, workingFolder = "UserServiceTest/getListUser/getListUser", basePath = "/itkoExamples/EJB3UserControlBean", requestDataProtocol = {
 			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
@@ -56,27 +76,10 @@ public class SimpleDemo {
 		assertNotNull(users);
 		assertEquals(1, users.length);
 	}
+	private void printUsers(User[] users) {
+		for (User user : users) {
+			logger.info(user.getFname() + " " + user.getLname() + " " + user.getLogin());
+		}
 
-	@DevTestVirtualService(serviceName = "EJB3AccountControlBean", port = 9080, basePath = "/itkoExamples/EJB3AccountControlBean", workingFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", requestDataProtocol = {
-			@Protocol(ProtocolType.DPH_SOAP) })
-	@DevTestVirtualService(serviceName = "EJB3UserControlBean", port = 9080, basePath = "/itkoExamples/EJB3UserControlBean", workingFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", requestDataProtocol = {
-			@Protocol(ProtocolType.DPH_SOAP) })
-	@DevTestVirtualService(serviceName = "TokenBean", port = 9080, basePath = "/itkoExamples/TokenBean", workingFolder = "AccountServiceTest/createUserWithCheckingAccount/TokenBean", requestDataProtocol = {
-			@Protocol(ProtocolType.DPH_SOAP) })
-	@Test
-	public void createUserWithCheckingAccount() {
-
-		// Given
-		String user = "pascal";
-		String password = "password";
-		int amount = 1000;
-		// prepare context
-		// bankServices.deleteUser(user);
-		// When
-		Account account = bankServices.createUserWithCheckingAccount(user, password, amount);
-		// Then
-		assertNotNull(account);
-		assertEquals("Le balance du compte n'est pas conforme", amount, account.getBalance().intValue());
 	}
-
 }
