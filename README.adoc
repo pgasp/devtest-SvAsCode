@@ -1,6 +1,6 @@
 == CA Service Virtualization As Code
 
-This project hase move to 
+This project has moved to 
 
 https://github.com/CA-DevTest/SV-as-Code
 
